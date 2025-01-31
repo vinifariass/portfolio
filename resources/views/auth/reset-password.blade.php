@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login &mdash; Stisla</title>
+    <title>Reset Password</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -31,11 +31,11 @@
 
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h4>Login</h4>
+                                <h4>Reset Password</h4>
                             </div>
 
                             <div class="card-body">
-                                <form method="POST" action="{{ route('login') }}" class="needs-validation"
+                                <form method="POST" action="{{ route('password.store') }}" class="needs-validation"
                                     novalidate="">
                                     @csrf
                                     <!-- Password Reset Token -->
@@ -63,33 +63,12 @@
 
                                     <div class="form-group">
                                         <label for="password_confirmation">Confirm Password</label>
-                                        <input id="password_confirmation" type="password_confirmation" class="form-control"
+                                        <input id="password_confirmation" type="password" class="form-control"
                                              name="password_confirmation" tabindex="1" required
                                             autofocus>
                                         @if ($errors->has('password_confirmation'))
                                             <code>{{ $errors->first('password_confirmation') }}</code>
                                         @endif
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                            <div class="float-right">
-                                                <a href="{{ route('password.request') }}" class="text-small">
-                                                    Forgot Password?
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <input id="password" type="password" class="form-control" name="password"
-                                            tabindex="2" required>
-                                        @if ($errors->has('password'))
-                                            <code>{{ $errors->first('password') }}</code>
-                                        @endif
-
-                                        <div class="invalid-feedback">
-                                            please fill in your password
-                                        </div>
-
                                     </div>
 
                                     <div class="form-group">
@@ -102,7 +81,7 @@
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
+                                            Reset Password
                                         </button>
                                     </div>
                                 </form>
@@ -144,39 +123,3 @@
 </html>
 
 
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-
-
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
-
-
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
-
-
-
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>

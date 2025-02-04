@@ -15,5 +15,7 @@
 
     @include('frontend.sections.testimonial')
 
+    @include('frontend.sections.blog')
+
     @include('frontend.sections.contact')
 @endsection

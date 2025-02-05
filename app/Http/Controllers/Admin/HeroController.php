@@ -38,10 +38,11 @@ class HeroController extends Controller
             'sub_title' => $request->sub_title,
             'btn_text' => $request->btn_text,
             'btn_url' => $request->btn_url,
-            'image' => $imagePath,
+            'image' => $imagePath ?? null,
         ]);
 
-        dd('Hero Updated Successfully');
+        toastr()->success('Hero updated successfully',['Success']);
+        return redirect()->route('admin.hero.index');
 
     }
 }

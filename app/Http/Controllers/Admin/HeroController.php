@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Hero;
 use Illuminate\Http\Request;
+use File;
 
 class HeroController extends Controller
 {
     public function index()
     {
-        return view('admin.hero.index');
+        $hero = Hero::first();
+        return view('admin.hero.index',compact("hero"));
     }
 
     public function create()
@@ -27,6 +29,12 @@ class HeroController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
+            $hero = Hero::first();
+
+            //Check if has the value and after check if the file exists or not in the path
+            if($hero && File::exists(public_path($hero->image))){
+                File::delete(public_path($hero->image));
+            }
             $image = $request->file('image');
             $imageName = rand() . $image->getClientOriginalName();
             $image->move(public_path('/uploads'), $imageName);

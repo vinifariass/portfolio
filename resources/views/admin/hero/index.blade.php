@@ -19,7 +19,7 @@
                             <h4>Update Hero Section</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{route('admin.hero.update',1)}}" method="POST">
+                            <form action="{{route('admin.hero.update',1)}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group row mb-4">
@@ -55,7 +55,7 @@
                                         Image</label>
                                     <div class="col-sm-12 col-md-7">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="image" id="customFile">
+                                            <input type="file" class="custom-file-input" name="image" id="image">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>

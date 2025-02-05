@@ -28,8 +28,8 @@ class HeroController extends Controller
             'image' => ['max:3000', 'image'],
         ]);
 
+        $hero = Hero::first();
         if ($request->hasFile('image')) {
-            $hero = Hero::first();
 
             //Check if has the value and after check if the file exists or not in the path
             if($hero && File::exists(public_path($hero->image))){
@@ -46,7 +46,7 @@ class HeroController extends Controller
             'sub_title' => $request->sub_title,
             'btn_text' => $request->btn_text,
             'btn_url' => $request->btn_url,
-            'image' => $imagePath ?? null,
+            'image' => $imagePath ?? $hero->image,
         ]);
 
         toastr()->success('Hero updated successfully',['Success']);

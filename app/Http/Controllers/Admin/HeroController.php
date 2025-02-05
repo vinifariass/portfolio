@@ -16,4 +16,13 @@ class HeroController extends Controller
     {
        /* return view('admin.heroes.create');*/
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => ['required', 'max:200'],
+            'sub_title' => ['required', 'max:500'],
+        ]);
+        dd($request->all());
+    }
 }

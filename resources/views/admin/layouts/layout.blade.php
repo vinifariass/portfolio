@@ -23,6 +23,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+    @vite(['assets/css/app.css','resources/js/app.js'])
 </head>
 
 <body>
@@ -92,6 +93,8 @@
         @endforeach
         @endif
     </script>
+    {{--Push any specific scripts for this page--}}
+@stack('scripts')
 </body>
 
 </html>

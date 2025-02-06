@@ -22,10 +22,10 @@ class TyperTitleDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($query){
-                return '<a href="'.route('admin.typer-title.edit',$query->id).'" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="'.route('admin.typer-title.destroy',$query->id).'" class="btn btn-sm btn-danger">Delete</a>';
-                })
+            ->addColumn('action', function ($query) {
+                return '<a href="' . route('admin.typer-title.edit', $query->id) . '" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="' . route('admin.typer-title.destroy', $query->id) . '" class="btn btn-sm btn-danger delete-item">Delete</a>';
+            })
             ->setRowId('id');
     }
 
@@ -43,14 +43,14 @@ class TyperTitleDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('typertitle-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                    ]);
+            ->setTableId('typertitle-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+            ]);
     }
 
     /**

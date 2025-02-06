@@ -6,6 +6,7 @@ use App\DataTables\TyperTitleDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\TyperTitle;
 use Illuminate\Http\Request;
+use function Termwind\render;
 
 class TyperTitleController extends Controller
 {
@@ -55,7 +56,8 @@ class TyperTitleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $title = TyperTitle::findOrFail($id);
+        return view('admin.typer-title.edit', compact('title'));
     }
 
     /**
@@ -63,7 +65,16 @@ class TyperTitleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'max:200']
+        ]);
+
+        $edit = TyperTitle::findOrFail($id);
+        $edit->title = $request->title;
+        $edit->save();
+
+        toastr()->success('Updated successfully',['Success']);
+        return redirect()->route('admin.typer-title.index');
     }
 
     /**
@@ -71,6 +82,8 @@ class TyperTitleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $delete = TyperTitle::findOrFail($id);
+        $delete->delete();
+
     }
 }

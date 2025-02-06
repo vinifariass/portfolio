@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
+
     <title>Dashboard</title>
 
     <!-- General CSS Files -->
@@ -72,7 +74,6 @@
     <script src="{{ asset('assets/js/plugins/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2.full.min.js') }}"></script>
 
-
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
@@ -84,6 +85,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Show dynamic validation errors -->
     <script>
         @if(!empty($errors->all()))
@@ -94,6 +97,47 @@
         @endif
     </script>
     {{--Push any specific scripts for this page--}}
+    <script>
+        // CSRF Token
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function () {
+            $("body").on("click", ".delete-item", function (e) {
+                e.preventDefault()
+                let deleteUrl = $(this).attr("href");
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            type: "DELETE",
+                            url: deleteUrl,
+                            success: function (response) {
+                                Swal.fire("Deleted!", "Your title has been deleted.", "success");
+                                window.location.reload();
+                            },
+                            error: function (error) {
+                                Swal.fire("Error!", "There was an error deleting the file.", "error");
+                            }
+                        })
+                    }
+                });
+            });
+        });
+    </script>
 @stack('scripts')
 </body>
 

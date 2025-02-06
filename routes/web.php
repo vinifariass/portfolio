@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\TyperTitleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
 
@@ -29,8 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+/*Admin Routes*/
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('hero', HeroController::class);
+    Route::resource('typer-title', TyperTitleController::class);
 });
 
 require __DIR__.'/auth.php';

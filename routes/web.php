@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -38,6 +39,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     /*Service Routes*/
     Route::resource('service', ServiceController::class);
+
+    /*About Routes*/
+    Route::resource('about', AboutController::class);
 });
 
 require __DIR__.'/auth.php';

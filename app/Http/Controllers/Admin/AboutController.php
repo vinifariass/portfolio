@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -47,12 +48,26 @@ class AboutController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'description' => ['required', 'max:1000'],
+            'title' => ['required', 'max:200'],
+            'image' => ['image'],
+            'resume' => ['mimes:pdf,csv,txt','max:10000'],
+        ]);
+
+        $about = About::first();
+        $imagePath =  handleUpload('image', $about);
+        $resumePath =  handleUpload('resume', $about);
+
+        About::updateOrCreate(['id' => $id], [
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => (!empty($imagePath)) ? $imagePath : $about->image,
+            'resume' => $resumePath ?? $about->resume,
+        ]);
+        dd($request->all());
     }
 
     /**

@@ -17,7 +17,7 @@ class HeroController extends Controller
 
     public function create()
     {
-        /* return view('admin.heroes.create');*/
+        return view('admin.heroes.create');
     }
 
     public function update(Request $request, $id)

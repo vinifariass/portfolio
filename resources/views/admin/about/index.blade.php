@@ -19,7 +19,7 @@
                             <h4>Update About Section</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.hero.update', 1) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.about.update', 1) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 

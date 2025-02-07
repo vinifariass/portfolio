@@ -13,7 +13,8 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('admin.about.index');
+        $about = About::first();
+        return view('admin.about.index',compact("about"));
     }
 
     /**
@@ -51,9 +52,9 @@ class AboutController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'description' => ['required', 'max:1000'],
+            'description' => ['required', 'max:5000'],
             'title' => ['required', 'max:200'],
-            'image' => ['image'],
+            'image' => ['image','max:5000'],
             'resume' => ['mimes:pdf,csv,txt','max:10000'],
         ]);
 
@@ -67,7 +68,9 @@ class AboutController extends Controller
             'image' => (!empty($imagePath)) ? $imagePath : $about->image,
             'resume' => $resumePath ?? $about->resume,
         ]);
-        dd($request->all());
+
+        toastr()->success('About updated successfully',['Success']);
+        return redirect()->back();
     }
 
     /**

@@ -73,6 +73,11 @@ class AboutController extends Controller
         return redirect()->back();
     }
 
+    public function resumeDownload()
+    {
+        return response()->download(public_path(About::first()->resume));
+    }
+
     /**
      * Remove the specified resource from storage.
      */

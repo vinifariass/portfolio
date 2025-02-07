@@ -122,10 +122,10 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
+                            type: "DELETE",
                             data: {
                                 "_token": "{{ csrf_token() }}",
                             },
-                            type: "DELETE",
                             url: deleteUrl,
                             success: function (response) {
                                 Swal.fire("Deleted!", "Your title has been deleted.", "success");

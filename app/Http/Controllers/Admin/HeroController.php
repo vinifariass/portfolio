@@ -36,7 +36,7 @@ class HeroController extends Controller
                 File::delete(public_path($hero->image));
             }
             $image = $request->file('image');
-            $siimageName = rand() . $image->getClientOriginalName();
+            $imageName = rand() . $image->getClientOriginalName();
             $image->move(public_path('/uploads'), $imageName);
             $imagePath = "/uploads/" . $imageName;
         }

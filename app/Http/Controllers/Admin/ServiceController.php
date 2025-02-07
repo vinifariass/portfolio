@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\ServiceDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -29,7 +30,18 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:200'],
+            'description' => ['required', 'max:500'],
+        ]);
+
+        $service = new Service();
+        $service->name = $request->name;
+        $service->description = $request->description;
+        $service->save();
+
+        toastr()->success('Service created successfully',['Success']);
+        return redirect()->route('admin.service.index');
     }
 
     /**
@@ -45,7 +57,8 @@ class ServiceController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $service = Service::find($id);
+        return view('admin.service.edit',compact('service'));
     }
 
     /**
@@ -53,7 +66,18 @@ class ServiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:200'],
+            'description' => ['required', 'max:500'],
+        ]);
+
+        $service = Service::find($id);
+        $service->name = $request->name;
+        $service->description = $request->description;
+        $service->save();
+
+        toastr()->success('Service updated successfully',['Success']);
+        return redirect()->route('admin.service.index');
     }
 
     /**

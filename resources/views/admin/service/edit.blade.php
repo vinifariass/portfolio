@@ -16,29 +16,30 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Create Service</h4>
+                            <h4>Edit Service</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{route('admin.service.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('admin.service.update', $service->id)}}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="name" class="form-control">
+                                        <input type="text" name="name" class="form-control" value="{{$service->name}}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="description" class="form-control" style="height: 100px"></textarea>
+                                        <textarea name="description" class="form-control" style="height: 100px">{{$service->description}}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary">Create</button>
+                                        <button class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
                             </form>

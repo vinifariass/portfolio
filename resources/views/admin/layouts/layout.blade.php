@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap-timepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/select2.min.css') }}">
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/selectric.css')}}">
 
 
     <!-- Template CSS -->
@@ -75,6 +76,8 @@
     <script src="{{ asset('assets/js/plugins/bootstrap-timepicker.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery.selectric.min.js') }}"></script>
+
 
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>

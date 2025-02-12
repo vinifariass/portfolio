@@ -4,16 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Hero;
+use App\Models\PortfolioSectionSetting;
 use Illuminate\Http\Request;
 
-class PortfolioSectionSetting extends Controller
+class PortfolioSectionSettingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.portfolio-setting.index');
+        $portfolio = PortfolioSectionSetting::first();
+        return view('admin.portfolio-setting.index', compact('portfolio'));
     }
 
     /**

@@ -69,7 +69,9 @@ class PortfolioItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::all();
+        $portfolioItem = PortfolioItem::findOrFail($id);
+        return view('admin.portfolio-item.edit', compact('categories', 'portfolioItem'));
     }
 
     /**
@@ -77,7 +79,29 @@ class PortfolioItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'image' => 'image|max:5000',
+            'title' => 'required',
+            'description' => 'required',
+            'category_id' => 'required|numeric',
+            'client' => 'max:200',
+            'website' => 'url',
+            ]);
+
+        $portfolioItem = PortfolioItem::findOrFail($id);
+
+        $imagePath = handleUpload('image', $portfolioItem);
+
+        $portfolioItem->image = (empty($imagePath)) ? $portfolioItem->image : $imagePath;
+        $portfolioItem->title = $request->title;
+        $portfolioItem->description = $request->description;
+        $portfolioItem->category_id = $request->category_id;
+        $portfolioItem->client = $request->client;
+        $portfolioItem->website = $request->website;
+        $portfolioItem->save();
+
+        toastr()->success('Portfolio Item updated successfully');
+        return redirect()->route('admin.portfolio-item.index');
     }
 
     /**
@@ -85,6 +109,8 @@ class PortfolioItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $portfolioItem = PortfolioItem::findOrFail($id);
+        deleteFileIfExist($portfolioItem->image);
+        $portfolioItem->delete();
     }
 }

@@ -25,7 +25,7 @@ class PortfolioItemDataTable extends DataTable
             ->addColumn('image', function ($query) {
                 return '<img src="' . asset($query->image) . '" class="img-fluid" style="width: 70px;">';
             })
-            ->addColumn('create_at', function ($query) {
+            ->addColumn('created_at', function ($query) {
                 return date('d-m-Y', strtotime($query->created_at));
             })
             ->addColumn('category', function ($query) {
@@ -57,7 +57,7 @@ class PortfolioItemDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
                 Button::make('excel'),

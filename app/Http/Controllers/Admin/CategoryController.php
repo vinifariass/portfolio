@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\PortfolioItem;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -39,7 +40,7 @@ class CategoryController extends Controller
         $category->slug = \Str::slug($category->name);
         $category->save();
 
-        toastr()->success('Category created successfully',['Success']);
+        toastr()->success('Category created successfully', ['Success']);
         return redirect()->route('admin.category.index');
     }
 
@@ -57,7 +58,7 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::find($id);
-        return view('admin.portfolio-category.edit',compact('category'));
+        return view('admin.portfolio-category.edit', compact('category'));
     }
 
     /**
@@ -74,7 +75,7 @@ class CategoryController extends Controller
         $category->slug = \Str::slug($category->name);
         $category->save();
 
-        toastr()->success('Category updated successfully',['Success']);
+        toastr()->success('Category updated successfully', ['Success']);
         return redirect()->route('admin.category.index');
     }
 
@@ -84,6 +85,10 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         $category = Category::findOrfail($id);
-        $category->delete();
+        $hasItems = PortfolioItem::where('category_id', $category->id)->count();
+        if ($hasItems == 0) {
+            $category->delete();
+        }
+        return response(['status' => 'error']);
     }
 }

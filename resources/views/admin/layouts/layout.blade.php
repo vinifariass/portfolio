@@ -132,12 +132,17 @@
                                 "_token": "{{ csrf_token() }}",
                             },
                             url: deleteUrl,
-                            success: function (response) {
-                                Swal.fire("Deleted!", "Your title has been deleted.", "success");
-                                window.location.reload();
+                            success: function (data) {
+                                if(data.status === 'error'){
+                                    Swal.fire('You can not delete this item', 'This category contain items cannot be deleted', 'error');
+                                }else{
+                                    Swal.fire("Deleted!", "Your title has been deleted.", "success");
+                                    window.location.reload();
+
+                                }
                             },
                             error: function (error) {
-                                Swal.fire("Error!", "There was an error deleting the file.", "error");
+                               console.log(error)
                             }
                         })
                     }

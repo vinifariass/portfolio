@@ -37,6 +37,12 @@ body {
     font-weight: 600;
 }
 
+.img-fix {
+    width: 100%;
+    height: 700px;
+    object-fit: cover
+}
+
 /* ---------------------
 Button-Styles
 ----------------------- */
@@ -217,7 +223,7 @@ Button-Styles
 }
 
 .main_menu .navbar-nav li .active,
-.main_menu .navbar-nav li:hover>a {
+.main_menu .navbar-nav li:hover > a {
     color: #ff885e;
 }
 
@@ -273,7 +279,7 @@ Button-Styles
     z-index: 999;
 }
 
-.main_menu .sub_menu>li>a {
+.main_menu .sub_menu > li > a {
     color: #190844;
     margin: 0;
     line-height: 0;
@@ -1431,8 +1437,8 @@ Footer-Area
     color: #3a3a3a;
 }
 
-.main_menu.menu_fix ul li>a i.plus:before,
-.main_menu.menu_fix ul li>a i.plus:after {
+.main_menu.menu_fix ul li > a i.plus:before,
+.main_menu.menu_fix ul li > a i.plus:after {
     background-color: #3a3a3a !important;
 }
 

@@ -26,4 +26,10 @@ class HomeController extends Controller
         $portfolioItems = PortfolioItem::all();
         return view('frontend.home',compact("hero","typerTitles","services","about","portfolioTitle","portfolioCategories","portfolioItems"));
     }
+
+    public function showPortfolio($id)
+    {
+        $portfolio = PortfolioItem::findOrfail($id);
+        return view('frontend.portfolio-details', compact('portfolio'));
+    }
 }

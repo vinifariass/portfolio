@@ -23,36 +23,30 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h2 class="head-title">9 Things I Love About Shaving My Head During.</h2>
+                    <h2 class="head-title">{{$portfolio->title}}</h2>
                     <figure class="image-block">
-                        <img src="images/portfolio-block.jpg" alt="">
+                        <img src="{{asset($portfolio->image)}}" alt="" class="img-fix">
                     </figure>
                     <div class="portflio-info">
                         <div class="single-info">
                             <h4 class="title">Client</h4>
-                            <p>SquareSparc Ltd.</p>
+                            <p>{{$portfolio->client}}</p>
                         </div>
                         <div class="single-info">
                             <h4 class="title">Date</h4>
-                            <p>8 January, 2019</p>
+                            <p>{{date('d M, Y',strtotime($portfolio->created_at))}}</p>
                         </div>
                         <div class="single-info">
                             <h4 class="title">Website</h4>
-                            <p>www.fooleo.com.uk</p>
+                            <p><a href="{{$portfolio->website}}">{{$portfolio->website}}</a></p>
                         </div>
                         <div class="single-info">
-                            <h4 class="title">Role</h4>
-                            <p>Web Design & Web Development</p>
+                            <h4 class="title">Category</h4>
+                            <p>{{$portfolio->category->name}}</p>
                         </div>
                     </div>
                     <div class="description">
-                        <h2>That and normal and we've class. Explain attained.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem porro ex repellat nobis
-                            maxime odio et, dolore fuga excepturi culpa, officiis voluptate aspernatur similique
-                            officia nihil exercitationem qui corporis iste assumenda eum quaerat? Porro amet
-                            repellat molestias eos iusto suscipit quos ex beatae aut voluptate deserunt dicta esse
-                            ullam ipsa nihil minima odio vitae, architecto totam, praesentium impedit excepturi
-                            ipsam.</p>
+                        {!! $portfolio->description !!}
                         <ul class="gallery">
                             <li><img src="images/gallery-1.jpg" alt="" class="img-fluid w-100"></li>
                             <li><img src="images/gallery-2.jpg" alt="" class="img-fluid w-100"></li>

@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Portfolio Feedback</h1>
+            <h1>Feedback Section</h1>
 
         </div>
 

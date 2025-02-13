@@ -88,6 +88,7 @@ class CategoryController extends Controller
         $hasItems = PortfolioItem::where('category_id', $category->id)->count();
         if ($hasItems == 0) {
             $category->delete();
+            return true;
         }
         return response(['status' => 'error']);
     }

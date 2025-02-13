@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SkillItemController;
+use App\Http\Controllers\Admin\SkillSectionSettingController;
 use App\Http\Controllers\Admin\TyperTitleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
@@ -57,6 +59,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     /*Portfolio Section Setting Routes*/
     Route::resource('portfolio-section-setting', PortfolioSectionSettingController::class);
+
+    /* Skill Section Setting Routes */
+    Route::resource('skill-section-setting', SkillSectionSettingController::class);
+
+    /* Skill Item Routes */
+    Route::resource('skill-item', SkillItemController::class);
 });
 
 require __DIR__.'/auth.php';

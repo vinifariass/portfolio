@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\BlogCategoryDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
 class BlogCategoryController extends Controller
@@ -10,9 +12,9 @@ class BlogCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(BlogCategoryDataTable $dataTable)
     {
-        //
+        return $dataTable->render('admin.blog-category.index');
     }
 
     /**
@@ -20,7 +22,7 @@ class BlogCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.blog-category.create');
     }
 
     /**
@@ -28,7 +30,17 @@ class BlogCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:200',
+        ]);
+
+        $blogCategory = new BlogCategory();
+        $blogCategory->name = $request->name;
+        $blogCategory->slug = \Str::slug($request->name);
+        $blogCategory->save();
+
+        toastr('Category created successfully', 'success');
+        return redirect()->route('admin.blog-category.index');
     }
 
     /**
@@ -44,7 +56,8 @@ class BlogCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = BlogCategory::findOrFail($id);
+        return view('admin.blog-category.edit', compact('category'));
     }
 
     /**
@@ -52,7 +65,17 @@ class BlogCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:200',
+        ]);
+
+        $blogCategory = BlogCategory::findOrFail($id);
+        $blogCategory->name = $request->name;
+        $blogCategory->slug = \Str::slug($request->name);
+        $blogCategory->save();
+
+        toastr('Category updated successfully', 'success');
+        return redirect()->route('admin.blog-category.index');
     }
 
     /**
@@ -60,6 +83,7 @@ class BlogCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $blogCategory = BlogCategory::find($id);
+        $blogCategory->delete();
     }
 }

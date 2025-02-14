@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
 Route::get('portfolio-details/{id}',[HomeController::class, 'showPortfolio'])->name('show.portfolio');
 Route::get('blog-details/{id}',[HomeController::class, 'showBlog'])->name('show.blog');
 Route::get('blogs',[HomeController::class, 'blog'])->name('blog');
+Route::post('contact',[HomeController::class, 'contact'])->name('contact');
 
 /*Admin Routes*/
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {

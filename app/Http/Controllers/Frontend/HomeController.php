@@ -74,6 +74,17 @@ class HomeController extends Controller
     public function blog()
     {
         $blogs = Blog::latest()->paginate(9);
-        return view('frontend.blog',compact('blogs'));
+        return view('frontend.blog', compact('blogs'));
+    }
+
+    public function contact(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:200',
+            'subject' => 'required|max:200',
+            'email' => 'required|email',
+            'message' => 'required|max:2000',
+            ]);
+        dd($request->all());
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExperienceController;
@@ -81,6 +82,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     /* Blog Category Routes */
     Route::resource('blog-category', BlogCategoryController::class);
+
+    /* Blog Routes */
+    Route::resource('blog', BlogController::class);
+
 });
 
 require __DIR__.'/auth.php';

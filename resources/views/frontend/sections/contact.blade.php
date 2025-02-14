@@ -94,7 +94,8 @@
                         if(response.status == 'success'){
                             toastr.success(response.message)
                             $("#submit_btn").prop('disabled', false)
-                            $("#submit_btn").text('Send Now')
+                            $("#submit_btn").text('Send Now');
+                            $("#contact-form").trigger('reset')
                         }
                     },
                     error: function (response) {

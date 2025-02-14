@@ -99,8 +99,11 @@
                 <ul class="dropdown-menu" style="display: none;">
                     <li><a class="nav-link" href="{{route('admin.blog-category.index')}}">Category</a></li>
                     <li><a class="nav-link" href="{{route('admin.blog.index')}}">Blog List</a></li>
+                    <li><a class="nav-link" href="{{route('admin.blog.index')}}">Section Setting</a></li>
+
                 </ul>
             </li>
+
 
             {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>--}}
 

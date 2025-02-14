@@ -70,6 +70,7 @@ class HomeController extends Controller
 
     public function blog()
     {
-
+        $blogs = Blog::latest()->paginate(9);
+        return view('frontend.blog',compact('blogs'));
     }
 }

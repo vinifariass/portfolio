@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Portfolio Item</h1>
+            <h1>Blog</h1>
 
         </div>
 
@@ -16,7 +16,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Portfolio Item</h4>
+                            <h4>All Blogs</h4>
                             <div class="card-header-action">
                                 <a href="{{route('admin.blog.create')}}" class="btn btn-success">Create New <i
                                         class="fa fa-plus"></i> </a>

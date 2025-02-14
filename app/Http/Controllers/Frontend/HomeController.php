@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Blog;
 use App\Models\Category;
 use App\Models\PortfolioItem;
 use App\Models\PortfolioSectionSetting;
@@ -34,6 +35,7 @@ class HomeController extends Controller
         $experience = Experience::first();
         $feedbacks = Feedback::all();
         $feedbackTitle = FeedbackSectionSetting::where('id', 1)->first();
+        $blogs = Blog::latest()->take(5)->get();
 
         return view('frontend.home', compact(
             "hero",
@@ -47,7 +49,8 @@ class HomeController extends Controller
             "skillItems",
             "experience",
             "feedbacks",
-            "feedbackTitle"
+            "feedbackTitle",
+            "blogs"
         ));
     }
 
@@ -55,5 +58,18 @@ class HomeController extends Controller
     {
         $portfolio = PortfolioItem::findOrfail($id);
         return view('frontend.portfolio-details', compact('portfolio'));
+    }
+
+    public function showBlog($id)
+    {
+        $blog = Blog::findOrfail($id);
+        $previousPost = Blog::where('id', '<', $blog->id)->orderBy('id', 'desc')->first();
+        $nextPost = Blog::where('id', '>', $blog->id)->orderBy('id')->first();
+        return view('frontend.blog-details', compact('blog', 'previousPost', 'nextPost'));
+    }
+
+    public function blog()
+    {
+
     }
 }

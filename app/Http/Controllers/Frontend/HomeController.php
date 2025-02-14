@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
 use App\Models\About;
 use App\Models\Blog;
 use App\Models\BlogSectionSetting;
@@ -18,6 +19,7 @@ use App\Models\Feedback;
 use App\Models\FeedbackSectionSetting;
 use Illuminate\Http\Request;
 use App\Models\Hero;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -85,6 +87,8 @@ class HomeController extends Controller
             'email' => 'required|email',
             'message' => 'required|max:2000',
             ]);
-        dd($request->all());
+        Mail::send(new ContactMail($request->all()));
+
+        return response(['status'=>'success', 'message' => 'Mail Send Successfully']);
     }
 }

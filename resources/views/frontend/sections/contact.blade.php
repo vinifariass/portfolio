@@ -43,7 +43,7 @@
                         <div class="col-sm-12">
                             <div class="form-box">
                                 <textarea class="input-box" id="message" placeholder="Message" cols="30" rows="4"
-                                          name="form-message"></textarea>
+                                          name="message"></textarea>
                                 <label for="form-message" class="icon lb-message"><i class="fal fa-edit"></i></label>
                             </div>
                         </div>
@@ -73,7 +73,12 @@
 
             $(document).on('submit', '#contact-form', function (e) {
                 e.preventDefault();
-                var form = $("#contact-form").serialize()
+                var formData = $("#contact-form").serializeArray();
+                var formObject = {};
+
+                $.each(formData, function (i, field) {
+                    formObject[field.name] = field.value;
+                });
                 $.ajax({
                     type: "POST",
                     url: "{{route('contact')}}",
@@ -83,10 +88,14 @@
                     },
                     data: {
                         "_token": "{{ csrf_token() }}",
-                        form
+                        ...formObject
                     },
                     success: function (response) {
-                        console.log(response)
+                        if(response.status == 'success'){
+                            toastr.success(response.message)
+                            $("#submit_btn").prop('disabled', false)
+                            $("#submit_btn").text('Send Now')
+                        }
                     },
                     error: function (response) {
                         if(response.status == 422){

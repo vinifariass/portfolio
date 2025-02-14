@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Blog;
+use App\Models\BlogSectionSetting;
 use App\Models\Category;
 use App\Models\PortfolioItem;
 use App\Models\PortfolioSectionSetting;
@@ -36,6 +37,7 @@ class HomeController extends Controller
         $feedbacks = Feedback::all();
         $feedbackTitle = FeedbackSectionSetting::where('id', 1)->first();
         $blogs = Blog::latest()->take(5)->get();
+        $blogTitle = BlogSectionSetting::first();
 
         return view('frontend.home', compact(
             "hero",
@@ -50,7 +52,8 @@ class HomeController extends Controller
             "experience",
             "feedbacks",
             "feedbackTitle",
-            "blogs"
+            "blogs",
+            "blogTitle"
         ));
     }
 

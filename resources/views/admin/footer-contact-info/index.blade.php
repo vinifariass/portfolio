@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Footer Information</h1>
+            <h1>Footer Contact Information</h1>
 
         </div>
 
@@ -16,34 +16,35 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Update Footer Info</h4>
+                            <h4>Update Footer Contact Info</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.footer-info.update', 1) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.footer-contact-info.update', 1) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Info</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Address</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="info" id="" class="form-control" style="height: 100px">{!! $footerInfo->info !!}</textarea>
+                                        <input type="text" name="address" class="form-control"
+                                               value="{{ $footerContactInfo->address }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Copy right</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Phone</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="copy_right" class="form-control"
-                                               value="{{ $footerInfo->copy_right }}">
+                                        <input type="text" name="phone" class="form-control"
+                                               value="{{ $footerContactInfo->phone }}">
                                     </div>
                                 </div>
 
 
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Powered by</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Email</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="powered_by" class="form-control"
-                                               value="{{ $footerInfo->powered_by }}">
+                                        <input type="text" name="email" class="form-control"
+                                               value="{{ $footerContactInfo->email }}">
                                     </div>
                                 </div>
 

@@ -11,8 +11,10 @@ use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\FeedbackSectionSettingController;
 use App\Http\Controllers\Admin\FooterContactInfoController;
+use App\Http\Controllers\Admin\FooterHelpLinkController;
 use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\FooterSocialLinkController;
+use App\Http\Controllers\Admin\FooterUsefulLinkController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
@@ -24,7 +26,7 @@ use App\Http\Controllers\Admin\TyperTitleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
 
-Route::get('/',[HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/blog', function () {
     return view('frontend.blog');
@@ -39,7 +41,7 @@ Route::get('/portfolio-details', function () {
 });
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'] )->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -47,10 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('portfolio-details/{id}',[HomeController::class, 'showPortfolio'])->name('show.portfolio');
-Route::get('blog-details/{id}',[HomeController::class, 'showBlog'])->name('show.blog');
-Route::get('blogs',[HomeController::class, 'blog'])->name('blog');
-Route::post('contact',[HomeController::class, 'contact'])->name('contact');
+Route::get('portfolio-details/{id}', [HomeController::class, 'showPortfolio'])->name('show.portfolio');
+Route::get('blog-details/{id}', [HomeController::class, 'showBlog'])->name('show.blog');
+Route::get('blogs', [HomeController::class, 'blog'])->name('blog');
+Route::post('contact', [HomeController::class, 'contact'])->name('contact');
 
 /*Admin Routes*/
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -102,10 +104,17 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     /* Footer Social Link Routes */
     Route::resource('footer-social', FooterSocialLinkController::class);
-
+    /* Footer Info Routes */
     Route::resource('footer-info', FooterInfoController::class);
 
+    /* Footer Contact Info Routes */
     Route::resource('footer-contact-info', FooterContactInfoController::class);
+
+    /* Footer Useful Links Routes */
+    Route::resource('footer-useful-links', FooterUsefulLinkController::class);
+
+    /* Footer Help Links Routes */
+    Route::resource('footer-help-links', FooterHelpLinkController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

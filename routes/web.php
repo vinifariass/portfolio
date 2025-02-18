@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\PortfolioItemController;
 use App\Http\Controllers\Admin\PortfolioSectionSettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SkillItemController;
 use App\Http\Controllers\Admin\SkillSectionSettingController;
 use App\Http\Controllers\Admin\TyperTitleController;
@@ -115,6 +116,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     /* Footer Help Links Routes */
     Route::resource('footer-help-links', FooterHelpLinkController::class);
+
+    /* Setting Route   */
+    Route::get('setting',SettingController::class)->name('setting.index');
+
+    /* General Setting Route */
+    Route::get('general-setting', [SettingController::class, 'generalSetting'])->name('general-setting');
 });
 
 require __DIR__ . '/auth.php';

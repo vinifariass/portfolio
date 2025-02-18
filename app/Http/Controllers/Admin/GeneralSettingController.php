@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\GeneralSetting;
 use Illuminate\Http\Request;
 
 class GeneralSettingController extends Controller
@@ -12,7 +13,8 @@ class GeneralSettingController extends Controller
      */
     public function index()
     {
-        //
+        $setting = GeneralSetting::first();
+        return view('admin.setting.general-setting.index', compact('setting'));
     }
 
     /**
@@ -52,7 +54,26 @@ class GeneralSettingController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'logo' => 'required|max:5000|image',
+            'footer_logo' => 'required|max:5000|image',
+            'favicon' => 'required|max:5000|image',
+        ]);
+
+        $setting = GeneralSetting::first();
+        $logo = handleUpload('logo', $setting);
+        $footer_logo = handleUpload('footer_logo', $setting);
+        $favicon = handleUpload('favicon', $setting);
+
+        $generalSetting = new GeneralSetting();
+        $generalSetting->logo = (!empty($logo)) ? $logo : $setting->logo;
+        $generalSetting->footer_logo = (!empty($footer_logo)) ? $footer_logo : $setting->footer_logo;
+        $generalSetting->favicon = (!empty($favicon)) ? $favicon : $setting->favicon;
+        $generalSetting->save();
+
+        toastr('Data has been updated successfully!', 'success');
+        return redirect()->back();
+
     }
 
     /**

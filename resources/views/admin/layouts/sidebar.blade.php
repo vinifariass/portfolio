@@ -3,7 +3,7 @@
     <div class="form-inline mr-auto"></div>
     <ul class="navbar-nav navbar-right">
         <li class="dropdown"><a href="#" data-toggle="dropdown"
-                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
             </a>
@@ -19,9 +19,9 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="#"
-                        onclick="event.preventDefault();
+                       onclick="event.preventDefault();
                                         this.closest('form').submit();"
-                        class="dropdown-item has-icon text-danger">
+                       class="dropdown-item has-icon text-danger">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 </form>
@@ -60,8 +60,10 @@
 
                 </ul>
             </li>
-             <li><a class="nav-link" href="{{route('admin.service.index')}}"><i class="far fa-square"></i> <span>Services</span></a></li>
-            <li><a class="nav-link" href="{{route('admin.about.index')}}"><i class="far fa-square"></i> <span>About</span></a></li>
+            <li><a class="nav-link" href="{{route('admin.service.index')}}"><i class="far fa-square"></i>
+                    <span>Services</span></a></li>
+            <li><a class="nav-link" href="{{route('admin.about.index')}}"><i class="far fa-square"></i>
+                    <span>About</span></a></li>
 
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
@@ -69,7 +71,8 @@
                 <ul class="dropdown-menu" style="display: none;">
                     <li><a class="nav-link" href="{{route('admin.category.index')}}">Category</a></li>
                     <li><a class="nav-link" href="{{route('admin.portfolio-item.index')}}">Portfolio Item</a></li>
-                    <li><a class="nav-link" href="{{route('admin.portfolio-section-setting.index')}}">Section Setting</a></li>
+                    <li><a class="nav-link" href="{{route('admin.portfolio-section-setting.index')}}">Section
+                            Setting</a></li>
                 </ul>
             </li>
 
@@ -78,18 +81,21 @@
                     <span>Skill</span></a>
                 <ul class="dropdown-menu" style="display: none;">
                     <li><a class="nav-link" href="{{route('admin.skill-item.index')}}">Skill Item</a></li>
-                    <li><a class="nav-link" href="{{route('admin.skill-section-setting.index')}}">Section Settings</a></li>
+                    <li><a class="nav-link" href="{{route('admin.skill-section-setting.index')}}">Section Settings</a>
+                    </li>
                 </ul>
             </li>
 
-            <li><a class="nav-link" href="{{route('admin.experience.index')}}"><i class="far fa-square"></i> <span>Experience</span></a></li>
+            <li><a class="nav-link" href="{{route('admin.experience.index')}}"><i class="far fa-square"></i> <span>Experience</span></a>
+            </li>
 
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Feedback</span></a>
                 <ul class="dropdown-menu" style="display: none;">
                     <li><a class="nav-link" href="{{route('admin.feedback.index')}}">Feedbacks</a></li>
-                    <li><a class="nav-link" href="{{route('admin.feedback-section-setting.index')}}">Section Setting</a></li>
+                    <li><a class="nav-link" href="{{route('admin.feedback-section-setting.index')}}">Section Setting</a>
+                    </li>
                 </ul>
             </li>
 
@@ -99,7 +105,8 @@
                 <ul class="dropdown-menu" style="display: none;">
                     <li><a class="nav-link" href="{{route('admin.blog-category.index')}}">Category</a></li>
                     <li><a class="nav-link" href="{{route('admin.blog.index')}}">Blog List</a></li>
-                    <li><a class="nav-link" href="{{route('admin.blog-section-setting.index')}}">Section Setting</a></li>
+                    <li><a class="nav-link" href="{{route('admin.blog-section-setting.index')}}">Section Setting</a>
+                    </li>
 
                 </ul>
             </li>
@@ -108,7 +115,8 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Contact</span></a>
                 <ul class="dropdown-menu" style="display: none;">
-                    <li><a class="nav-link" href="{{route('admin.contact-section-setting.index')}}">Section Setting</a></li>
+                    <li><a class="nav-link" href="{{route('admin.contact-section-setting.index')}}">Section Setting</a>
+                    </li>
 
                 </ul>
             </li>
@@ -119,24 +127,17 @@
                 <ul class="dropdown-menu" style="display: none;">
                     <li><a class="nav-link" href="{{route('admin.footer-social.index')}}">Social Links</a></li>
                     <li><a class="nav-link" href="{{route('admin.footer-info.index')}}">Footer Information</a></li>
-                    <li><a class="nav-link" href="{{route('admin.footer-contact-info.index')}}">Footer Contact Info</a></li>
-                    <li><a class="nav-link" href="{{route('admin.footer-useful-links.index')}}">Footer Useful Links</a></li>
+                    <li><a class="nav-link" href="{{route('admin.footer-contact-info.index')}}">Footer Contact Info</a>
+                    </li>
+                    <li><a class="nav-link" href="{{route('admin.footer-useful-links.index')}}">Footer Useful Links</a>
+                    </li>
                     <li><a class="nav-link" href="{{route('admin.footer-help-links.index')}}">Footer Help Links</a></li>
 
                 </ul>
             </li>
 
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Settings</span></a>
-                <ul class="dropdown-menu" style="display: none;">
-                    <li><a class="nav-link" href="{{route('admin.setting.index')}}">General Setting</a></li>
-                    <li><a class="nav-link" href="{{route('admin.footer-social.index')}}">Social Links</a></li>
-
-
-                </ul>
-            </li>
-
+            <li><a class="nav-link" href="{{route('admin.setting.index')}}"><i class="far fa-square"></i>
+                    <span>Settings</span></a></li>
 
             {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>--}}
 

@@ -1,3 +1,6 @@
+@php
+    $generalSettings = \App\Models\GeneralSetting::first();
+@endphp
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -7,7 +10,7 @@
     <meta name="csrf_token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rabins | Personal Portfolio HTML Template</title>
-    <link rel="shortcut icon" type="image/ico" href="images/favicon.png" />
+    <link rel="shortcut icon" type="image/ico" href="{{asset($generalSettings->favicon)}}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style-plugin-collection.css') }}">

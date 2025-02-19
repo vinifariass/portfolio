@@ -62,7 +62,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/css/bootstrap-iconpicker.min.css">
-    @vite(['assets/css/app.css','resources/js/app.js'])
+    @vite(['resources/css/app.css','resources/js/app.js'])
     <script src="{{asset('assets/js/stisla.js')}}"></script>
 
     <!-- JS Libraies -->

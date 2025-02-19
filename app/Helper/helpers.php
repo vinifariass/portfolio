@@ -44,3 +44,15 @@ function getColor($index){
     return $colors[$index % count($colors)];
 
 }
+
+/** Set Sidebar Item Active */
+
+function setSidebarActive($routeName){
+    if(is_array($routeName)) {
+        foreach ($routeName as $route) {
+            if (request()->routeIs($route)) {
+                return 'active';
+            }
+        }
+    }
+}

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap-timepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/select2.min.css') }}">
-    <link rel="stylesheet" href="{{asset('assets/css/plugins/selectric.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/selectric.css') }}">
 
 
     <!-- Template CSS -->
@@ -61,16 +61,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/css/bootstrap-iconpicker.min.css">
-    @vite(['resources/css/app.css','resources/js/app.js'])
-    <script src="{{asset('assets/js/stisla.js')}}"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/css/bootstrap-iconpicker.min.css">
+    {{-- @vite(['resources/css/app.css','resources/js/app.js']) --}}
+    <script src="{{ asset('assets/js/stisla.js') }}"></script>
+
+    <script src="{{ asset('assets/js/datatable.js') }}"></script>
 
     <!-- JS Libraies -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.css"
         integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="{{ asset('assets/js/plugins/summernote-bs4.js')}}"></script>
+    <script src="{{ asset('assets/js/plugins/summernote-bs4.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.selectric.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.uploadPreview.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/bootstrap-tagsinput.min.js') }}"></script>
@@ -78,10 +81,9 @@
     <script src="{{ asset('assets/js/plugins/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.selectric.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/js/bootstrap-iconpicker.bundle.min.js"></script>
-
-
-    <!-- Template JS File -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/js/bootstrap-iconpicker.bundle.min.js">
+    </script>
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/datatable.css') }}" <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 
@@ -98,14 +100,13 @@
 
     <!-- Show dynamic validation errors -->
     <script>
-        @if(!empty($errors->all()))
-        @foreach($errors->all() as $error)
-        toastr.error('{{ $error }}');
-
-        @endforeach
+        @if (!empty($errors->all()))
+            @foreach ($errors->all() as $error)
+                toastr.error('{{ $error }}');
+            @endforeach
         @endif
     </script>
-    {{--Push any specific scripts for this page--}}
+    {{-- Push any specific scripts for this page --}}
     <script>
         // CSRF Token
         $.ajaxSetup({
@@ -114,8 +115,8 @@
             }
         });
 
-        $(document).ready(function () {
-            $("body").on("click", ".delete-item", function (e) {
+        $(document).ready(function() {
+            $("body").on("click", ".delete-item", function(e) {
                 e.preventDefault()
                 let deleteUrl = $(this).attr("href");
                 Swal.fire({
@@ -134,17 +135,20 @@
                                 "_token": "{{ csrf_token() }}",
                             },
                             url: deleteUrl,
-                            success: function (data) {
-                                if(data.status === 'error'){
-                                    Swal.fire('You can not delete this item', 'This category contain items cannot be deleted', 'error');
-                                }else{
-                                    Swal.fire("Deleted!", "Your title has been deleted.", "success");
+                            success: function(data) {
+                                if (data.status === 'error') {
+                                    Swal.fire('You can not delete this item',
+                                        'This category contain items cannot be deleted',
+                                        'error');
+                                } else {
+                                    Swal.fire("Deleted!",
+                                        "Your title has been deleted.", "success");
                                     window.location.reload();
 
                                 }
                             },
-                            error: function (error) {
-                               console.log(error)
+                            error: function(error) {
+                                console.log(error)
                             }
                         })
                     }
@@ -152,7 +156,7 @@
             });
         });
     </script>
-@stack('scripts')
+    @stack('scripts')
 </body>
 
 </html>
